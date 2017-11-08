@@ -37,14 +37,47 @@ than pick nothing!):
 
 # Plan:
     # Can start and end anywhere, but in progression
-    # Find way to not duplicate loops?
+    # Find way to not duplicate loops (e.g. look back)
     # Not allowed to re-arrange (sort) lst
     # No duplicates in final output (store in set then convert to lst?)
     # Can return one value if its the highest (no addition)
+    # If all empty, return empty lst
 
 
 def largest_sum(nums):
     """Find subsequence with largest sum."""
+
+    # Before loop, initialize start/end indices for final lst splice output
+
+    # Keep track of best sum
+    best_sum = 0
+    start_of_best = 0
+    end_of_best = -1  # nothing; -1 r/t lst splicing output
+
+    # Track current sum and start traversal
+    current_sum = 0
+    start_of_curr = 0
+
+    # loop over lst; track idx for storing start/end of sequences
+    for i, n in enumerate(nums):
+
+        # First: initialize first item as current_sum
+        # Later: build up seq. sum with next item
+        current_sum += n
+
+        # if new largest, update best
+        if current_sum > best_sum:
+            best_sum = current_sum
+            start_of_best = start_of_curr  # track first idx
+            end_of_best = i  # track last idx
+
+        # reset sequence if sum ever goes below 0
+        if current_sum <= 0:
+            start_of_curr = i + 1  # re-initialize seq w/ next item
+            current_sum = 0
+
+    # return seq with best sum via lst splicing
+    return nums[start_of_best:end_of_best + 1]
 
 
 if __name__ == '__main__':
