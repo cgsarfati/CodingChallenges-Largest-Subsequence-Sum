@@ -35,6 +35,13 @@ than pick nothing!):
     []
 """
 
+# Plan:
+    # Can start and end anywhere, but in progression
+    # Find way to not duplicate loops?
+    # Not allowed to re-arrange (sort) lst
+    # No duplicates in final output (store in set then convert to lst?)
+    # Can return one value if its the highest (no addition)
+
 
 def largest_sum(nums):
     """Find subsequence with largest sum."""
